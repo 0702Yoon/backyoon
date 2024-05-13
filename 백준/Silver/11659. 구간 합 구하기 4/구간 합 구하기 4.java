@@ -1,29 +1,24 @@
-
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int count = sc.nextInt();
-		int[] numberArray = new int[n];
-		int[] sumArray = new int[n];
-		for (int i = 0; i < n; i++) {
-			numberArray[i] = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int suNo = Integer.parseInt(st.nextToken());
+		int quizNo = Integer.parseInt(st.nextToken());
+		long[] s = new long[suNo + 1];
+		st = new StringTokenizer(br.readLine());
+		for (int i = 1; i <= suNo; i++) {
+			s[i] = s[i - 1] + Integer.parseInt(st.nextToken());
 		}
-		sumArray[0] = numberArray[0];
-		for (int i = 1; i < n; i++) {
-			sumArray[i] = sumArray[i - 1] + numberArray[i];
-		}
-		for (int i = 0; i < count; i++) {
-			int start = sc.nextInt() - 1;
-			int end = sc.nextInt() - 1;
-			try {
-				System.out.println(sumArray[end] - sumArray[start - 1]);
-			} catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println(sumArray[end]);
-
-			}
+		for (int i = 0; i < quizNo; i++) {
+			st = new StringTokenizer(br.readLine());
+			int start = Integer.parseInt(st.nextToken());
+			int end = Integer.parseInt(st.nextToken());
+			System.out.println(s[end] - s[start - 1]);
 		}
 	}
 }
