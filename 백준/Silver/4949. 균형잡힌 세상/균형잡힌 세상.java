@@ -8,29 +8,33 @@ public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
+        String line;
+        boolean success;
         Stack<Character> stack = new Stack<>();
         while (true) {
             stack.clear();
-            boolean success = true;
-            String line = br.readLine(); // 한 줄 입력받음
-            if (line.equals(".")) break;
-
+            success = true;
+            line = br.readLine();
+            if (line.equals(".")) {
+                break;
+            }
             for (char current : line.toCharArray()) {
-                if (current == '(' || current == '[') {
+                if ((current == '(' || current == '[')) {
                     stack.push(current);
-                } else if (current == ')') {
+                }
+                if (current == ')') {
                     if (stack.isEmpty() || stack.pop() != '(') {
                         success = false;
                         break;
                     }
-                } else if (current == ']') {
+                }
+                if (current == ']') {
                     if (stack.isEmpty() || stack.pop() != '[') {
                         success = false;
                         break;
                     }
                 }
             }
-
             if (success && stack.isEmpty()) {
                 System.out.println("yes");
             } else {
