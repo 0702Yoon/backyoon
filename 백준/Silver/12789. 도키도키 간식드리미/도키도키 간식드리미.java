@@ -1,17 +1,21 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        StringTokenizer stringTokenizer = new StringTokenizer(br.readLine());
         int current, stackLast;
         boolean result = true;
         Stack<Integer> stack2 = new Stack<>();
         stackLast = 0;
         for (int i = 0; i < n; i++) {
-            current = sc.nextInt();
+            current = Integer.parseInt(stringTokenizer.nextToken());
             if (stackLast + 1 == current) {
                 stackLast = current;
                 stackLast = getStackLast(stack2, stackLast);
