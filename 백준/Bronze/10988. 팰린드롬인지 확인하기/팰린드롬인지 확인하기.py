@@ -1,8 +1,11 @@
-def is_palindrome(word: str)-> int:
-    if word == word[::-1]:
-        return 1
-    else:
-        return 0
- 
+def pel(s: str):
+    last = len(s)
+    for i in range(last//2):
+        if s[i] != s[last-i -1]:
+            return 0
+    return 1
+
 if __name__ == "__main__":
-    print(is_palindrome(input()))
+    s = input()
+    print(pel(s))
+        
