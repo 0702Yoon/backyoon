@@ -1,11 +1,9 @@
-a = int(input())
-if(a%4!=0):
-    print("0")
-else:
-    if(a%400==0):
-        print("1")
-    elif(a%100==0):
-        print("0")
+def is_leap_year(year: int) -> int:
+    if(year % 4 == 0 and year % 100 != 0) or (year %400 == 0):
+        return 1
     else:
-        print("1")
-     
+        return 0
+
+if __name__ == "__main__":
+    year = int(input())
+    print(is_leap_year(year))
