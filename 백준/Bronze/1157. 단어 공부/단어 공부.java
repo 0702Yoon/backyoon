@@ -1,43 +1,43 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Main{
-	public static void main(String[]args) {
-	Scanner sc = new Scanner(System.in);
-	String S = sc.nextLine();
-	int[] arr = new int[26];
-	int max=-100;
-	int equ=0;
-	int check=0;
-	for(int i=0;i<S.length();i++) {
-		char x=S.charAt(i);
-		int first=97;
-		int second=65;
-		int k=0;
-		while(true) {
-			if(x==first||x==second) {
-				arr[k]++;
-				break;
-			}
-			else {
-				first++;second++;k++;
-			}
-		}
-	}
-	for(int i=0;i<26;i++) {
-		if(arr[i]>max) {
-			max=arr[i];
-			check=i;
-		}
-		else if(arr[i]==max) {
-			equ=max;
-		}
-	}
-	if(max==equ) {
-		System.out.println("?");
-	}
-	else {
-		char result =(char) (65+check);
-		System.out.println(result);
-	}
-	}
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int w = br.read();
+        long[] arr = new long[26];
+        while(w >= 65 && w <= 122){
+            // a: 97
+            // z: 122
+            // A: 65
+            // Z: 90
+            if(w>=97){
+                w -= 32;
+            }
+            arr[w-65] += 1;
+            w = br.read();
+        }
+
+        long maxCount = -1;
+        int maxIndex = -1;
+        boolean duplicate = false;
+
+        for(int i=0;i<26;i++){
+            if(maxCount < arr[i]) {
+                maxCount = arr[i];
+                maxIndex = i;
+                duplicate = false;
+            }else if(maxCount == arr[i]){
+                duplicate = true;
+            }
+        }
+        
+        if(duplicate){
+            System.out.println("?");
+        }else{
+            System.out.println((char) (maxIndex +65));
+        }
+    }
 }
